@@ -2,47 +2,35 @@ import json
 
 
 def get_json_file_dict(json_file):
-    with open(json_file, "w", encoding="utf-8") as file_read:
+    with open(json_file, "r", encoding="utf-8") as file_read:
         return json.load(file_read)
 
 
-def get_all_unique_keys(dict1, dict2):
+def get_all_unique_and_sorted_keys(dict1, dict2):
     unique_keys = set(dict1.keys()) | set(dict2.keys())
     return sorted(unique_keys)
 
 
-def get_diff_list(dict_first_file, dict_second_file):
-    all_keys = get_all_unique_keys(dict_first_file,
-                                   dict_second_file)
-    result_list = []
-    for key in all_keys:
-        if key in dict_first_file and key in dict_second_file:
-            if dict_first_file[key] == dict_second_file[key]:
-                result_list.append(f"  {key}: {dict_first_file[key]}")
-            else:
-                result_list.append(f"- {key}: {dict_first_file[key]}")
-                result_list.append(f"+ {key}: {dict_second_file[key]}")
-        elif key in dict_first_file and key not in dict_second_file:
-            result_list.append(f"- {key}: {dict_first_file[key]}")
-        elif key not in dict_first_file and key in dict_second_file:
-            result_list.append(f"+ {key}: {dict_second_file[key]}")
-    return result_list
-
-
-def get_diff_result_string(diff_result_list):
+def get_result_string(first_file, second_file):
+    all_keys = get_all_unique_and_sorted_keys(first_file,
+                                              second_file)
     result_string = "{\n"
-    for row in diff_result_list:
-        if row.startswith("+") or row.startswith("-"):
-            result_strin += f"  {row}\n"
-        else:
-            result_strin += f"    {row}\n"
+    for key in all_keys:
+        if key in first_file and key in second_file:
+            if first_file[key] == second_file[key]:
+                result_string += f"    {key}: {first_file[key]}\n"
+            else:
+                result_string += f"  - {key}: {first_file[key]}\n"
+                result_string += f"  + {key}: {second_file[key]}\n"
+        elif key in first_file and key not in second_file:
+            result_string += f"  - {key}: {first_file[key]}\n"
+        elif key not in first_file and key in second_file:
+            result_string += f"  + {key}: {second_file[key]}\n"
     result_string += "}"
     return result_string
 
 
-def diff_generate(file_first, file_second):
-    diff_result_list = get_diff_list(get_json_file_dict(file_first),
-                                     get_json_file_dict(file_second))
-    print(get_diff_result_string(diff_result_list))
-
-print(get_json_file_dict("file1.json"))
+def diff_generate(first_file, second_file):
+    diff_result_string = get_result_string(get_json_file_dict(first_file),
+                                           get_json_file_dict(second_file))
+    return diff_result_string
