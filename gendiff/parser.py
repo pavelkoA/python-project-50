@@ -34,19 +34,3 @@ def diff_generate(first_file, second_file):
     diff_result_string = get_result_string(get_json_file_dict(first_file),
                                            get_json_file_dict(second_file))
     return diff_result_string
-
-
-first_file = {
-  "host": "hexlet.io",
-  "timeout": 50,
-  "proxy": "123.234.53.22",
-  "follow": False
-}
-
-second_file = {
-  "timeout": 20,
-  "verbose": True,
-  "host": "hexlet.io"
-}
-
-print(get_result_string(first_file, second_file))
