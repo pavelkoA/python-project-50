@@ -18,14 +18,14 @@ def get_result_string(first_file, second_file):
     for key in sorted(all_keys):
         if key in first_file and key in second_file:
             if first_file[key] == second_file[key]:
-                result_string += f"  {key}: {first_file[key]}\n"
+                result_string += f"    {key}: {first_file[key]}\n"
             else:
-                result_string += f"- {key}: {first_file[key]}\n"
-                result_string += f"+ {key}: {second_file[key]}\n"
+                result_string += f"  - {key}: {first_file[key]}\n"
+                result_string += f"  + {key}: {second_file[key]}\n"
         elif key in first_file:
-            result_string += f"- {key}: {first_file[key]}\n"
+            result_string += f"  - {key}: {first_file[key]}\n"
         elif key in second_file:
-            result_string += f"+ {key}: {second_file[key]}\n"
+            result_string += f"  + {key}: {second_file[key]}\n"
     result_string += "}"
     return result_string
 
