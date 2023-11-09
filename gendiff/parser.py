@@ -29,7 +29,6 @@ def get_result_string(first_file, second_file):
     result_string += "}"
     return result_string
 
-
 def diff_generate(first_file, second_file):
     diff_result_string = get_result_string(get_json_file_dict(first_file),
                                            get_json_file_dict(second_file))
