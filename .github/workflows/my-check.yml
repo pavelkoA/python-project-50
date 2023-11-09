@@ -17,4 +17,4 @@ jobs:
           python-version: 3.12
 
       - name: Install and check lint 
-        run: flake8 .
+        run: make lint
