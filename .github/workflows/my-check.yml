@@ -15,6 +15,13 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.12
+      
+      - name: Install poetry
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install poetry
 
       - name: Install and check lint 
-        run: make lint
+        run: |
+          make install
+          make lint
