@@ -8,7 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: pavelkoA/python-project-50@main
-      - run: make-install
-      - run: make-lint
-      
+      - uses: actions/checkout@v3
+      - name: Install and check lint 
+        run: |
+          make install
+          make lint
