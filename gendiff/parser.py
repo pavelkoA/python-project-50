@@ -6,14 +6,8 @@ def get_json_file_dict(json_file):
         return json.load(file_read)
 
 
-def get_all_unique_keys(dict1, dict2):
-    unique_keys = set(dict1.keys()) | set(dict2.keys())
-    return unique_keys
-
-
 def get_result_string(first_file, second_file):
-    all_keys = get_all_unique_keys(first_file,
-                                   second_file)
+    all_keys = set(first_file.keys()) | set(second_file.keys())
     result_string = "{\n"
     for key in sorted(all_keys):
         if key in first_file and key in second_file:
