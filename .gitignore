@@ -40,3 +40,5 @@ env.bak/
 venv.bak/
 
 *.json
+
+test.py
