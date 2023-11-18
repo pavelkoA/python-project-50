@@ -25,6 +25,7 @@ jobs:
         run: |
           make install
           make lint
+          make test
 
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
