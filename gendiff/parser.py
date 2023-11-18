@@ -1,6 +1,9 @@
 import json
 
 
+TABULATION = "  "
+
+
 def get_json_file_dict(json_file):
     with open(json_file, "r", encoding="utf-8") as file_read:
         return json.load(file_read)
@@ -30,28 +33,66 @@ def get_json_file_dict(json_file):
 #     return diff_result_string
 
 
-def get_result_string(first_file, second_file):
+def get_diff_dict(first_file, second_file):
     keys = first_file.keys() | second_file.keys()
-    result_list = []
+    result = []
     for key in sorted(keys):
+        first_value = first_file.get(key, None)
+        second_value = second_file.get(key, None)
         if key in first_file and key in second_file:
-            first_value = first_file[key]
-            second_value = second_file[key]
             if first_value == second_value:
-                result_list.append({"key": key,
-                                    "type": "unchanged",
-                                    "value": first_value})
+                result.append({"key": key,
+                               "type": "unchanged",
+                               "value": first_value})
             else:
-                result_list.append({"key": key,
-                                    "type": "changed",
-                                    "first_value": first_value,
-                                    "second_value": second_value})
+                result.append({"key": key,
+                               "type": "changed",
+                               "old_value": first_value,
+                               "new_value": second_value})
         elif key in first_file:
-            result_list.append({"key": key,
-                                "type": "removed",
-                                "value": first_file[key]})
+            result.append({"key": key,
+                           "type": "removed",
+                           "value": first_value})
         elif key in second_file:
-            result_list.append({"key": key,
-                                "type": "removed",
-                                "value": second_file[key]})
-    return result_list
+            result.append({"key": key,
+                           "type": "added",
+                           "value": second_value})
+    return result
+
+
+def generate_string(string_data_dict):
+    type = string_data_dict["type"]
+    match type:
+        case "added":
+            return f"+ {string_data_dict['key']}: {string_data_dict['value']}\n"
+        case "removed":
+            return f"- {string_data_dict['key']}: {string_data_dict['value']}\n"
+        case "unchanged":
+            return f"  {string_data_dict['key']}: {string_data_dict['value']}\n"
+        case "changed":
+            return f"- {string_data_dict['key']}: {string_data_dict['old_value']}\n" \
+                   f"{TABULATION}+ {string_data_dict['key']}: {string_data_dict['new_value']}\n"
+
+
+def diff_generate(first_file, second_file):
+    result_string = "{\n"
+    for row in get_diff_dict(first_file, second_file):
+        result_string += TABULATION + generate_string(row)
+
+    return result_string + "}"
+
+file_first_dict = {
+                   "host": "hexlet.io",
+                   "timeout": 50,
+                   "proxy": "123.234.53.22",
+                   "follow": False
+                   }
+
+file_second_dict = {
+                    "timeout": 20,
+                    "verbose": True,
+                    "host": "hexlet.io"
+                   }
+
+
+print(diff_generate(file_first_dict, file_second_dict))
