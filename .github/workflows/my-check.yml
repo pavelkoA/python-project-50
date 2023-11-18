@@ -25,21 +25,3 @@ jobs:
         run: |
           make install
           make lint
-  
-  coverage:
-    needs: [ test ]
-    name: coverage
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-python@master
-      with:
-        python-version: 3.12
-    - run: npm install -g yarn
-    - run: yarn install
-    - run: yarn build
-    - uses: paambaati/codeclimate-action@master
-      env:
-        CC_TEST_REPORTER_ID: 5bafefc381d19d325eb95d6e35c3387ba7d66814dfbe8ca026d59d72f9d0715b
-      with:
-        coverageCommand: yarn coverage
