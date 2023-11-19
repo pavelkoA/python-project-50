@@ -40,25 +40,28 @@ def generate_string(string_data_dict):
     type = string_data_dict["type"]
     match type:
         case "added":
-            return f"+ {string_data_dict['key']}:" \
+            return f"  + {string_data_dict['key']}:" \
                    f" {string_data_dict['value']}\n"
         case "removed":
-            return f"- {string_data_dict['key']}:" \
+            return f"  - {string_data_dict['key']}:" \
                    f" {string_data_dict['value']}\n"
         case "unchanged":
             return f"  {string_data_dict['key']}:" \
                    f" {string_data_dict['value']}\n"
         case "changed":
-            return f"- {string_data_dict['key']}:" \
+            return f"  - {string_data_dict['key']}:" \
                    f" {string_data_dict['old_value']}\n" \
-                   f"{TABULATION}+ {string_data_dict['key']}:" \
+                   f"  + {string_data_dict['key']}:" \
                    f" {string_data_dict['new_value']}\n"
 
 
 def diff_generate(first_file, second_file):
+    file_1_json_to_dict = get_json_file_to_dict(first_file)
+    file_2_json_to_dict = get_json_file_to_dict(second_file)
     result_string = "{\n"
-    for row in get_json_file_to_dict(first_file, second_file):
-        result_string += TABULATION + generate_string(row)
+    for row in get_diff_dict(file_1_json_to_dict,
+                             file_2_json_to_dict):
+        result_string += generate_string(row)
         result_string = result_string.replace("True", "true")
         result_string = result_string.replace("False", "false")
     result_string += "}"

@@ -14,13 +14,18 @@ file_second_dict = {
 
 diff_dict_test1_file1 = {"host": "hexlet.io"}
 diff_dict_test1_file2 = {"host": "hexlet.io"}
-result_dict_test1 = [{"key": "host",
+result_dict_test1 = {"key": "host",
                      "type": "unchanged",
-                     "value": "hexlet.io"}]
+                     "value": "hexlet.io"}
 
 diff_dict_test2_file1 = {"timeout": 50}
 diff_dict_test2_file2 = {"timeout": 20}
-result_dict_test2 = [{"key": "timeout",
+result_dict_test2 = {"key": "timeout",
                      "type": "changed",
                      "old_value": 50,
-                     "new_value": 20}]
+                     "new_value": 20}
+
+
+generate_string_test1_data = "  host: hexlet.io\n"
+generate_string_test2_data = "  - timeout: 50\n" \
+                             "  + timeout: 20\n"
