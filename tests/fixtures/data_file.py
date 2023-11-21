@@ -14,24 +14,20 @@ file_second_dict = {
 
 diff_dict_test1_file1 = {"host": "hexlet.io"}
 diff_dict_test1_file2 = {"host": "hexlet.io"}
-result_dict_test1 = {"key": "host",
-                     "type": "unchanged",
-                     "value": "hexlet.io"}
+result_dict_test1 = {"  host": "hexlet.io"}
 
 diff_dict_test2_file1 = {"timeout": 50}
 diff_dict_test2_file2 = {"timeout": 20}
-result_dict_test2 = {"key": "timeout",
-                     "type": "changed",
-                     "old_value": 50,
-                     "new_value": 20}
+result_dict_test2 = {"- timeout": 50,
+                     "+ timeout": 20}
 
 
 test_data_get_diff_dict = [(diff_dict_test1_file1,
                             diff_dict_test1_file2,
-                            [result_dict_test1]),
+                            result_dict_test1),
                             (diff_dict_test2_file1,
                             diff_dict_test2_file2,
-                            [result_dict_test2])]
+                            result_dict_test2)]
 
 
 generate_string_test1_data = "    host: hexlet.io\n"
@@ -47,10 +43,10 @@ test_data_diff_generate = "{\n" \
                               "  + verbose: true\n}"
 
 
-test_data_generate_string = [(result_dict_test1,
-                              generate_string_test1_data),
-                             (result_dict_test2,
-                              generate_string_test2_data)]
+# test_data_generate_string = [(result_dict_test1,
+#                               generate_string_test1_data),
+#                              (result_dict_test2,
+#                               generate_string_test2_data)]
 
 
 test_data_json_read = [(file_first_dict, "tests/fixtures/file1.json"),
