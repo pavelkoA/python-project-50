@@ -17,7 +17,7 @@ def get_utils_to_readerd(path_file):
     match problem_format:
         case "json":
             return get_json_file_to_dict(path_file)
-        case ".yml"|"yaml":
+        case ".yml" | "yaml":
             return get_yaml_file_to_dict(path_file)
         case _:
             return "format not supported"
