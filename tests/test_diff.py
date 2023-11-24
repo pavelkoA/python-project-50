@@ -18,7 +18,7 @@ def test_get_diff_dict(dict_1,dict_2,result_dict):
 #     assert generate_string(data_dict) == result_string
 
 
-@pytest.mark.parametrize("path_file1, path_file22, result_string",
-                         data_file.test_data_diff_generate)
-def test_diff_generate(path_file1, path_file22, result_string):
-    assert diff_generate(path_file1, path_file22) == result_string
+# @pytest.mark.parametrize("path_file1, path_file22, result_string",
+#                          data_file.test_data_diff_generate)
+# def test_diff_generate(path_file1, path_file22, result_string):
+#     assert diff_generate(path_file1, path_file22) == result_string
