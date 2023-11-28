@@ -1,18 +1,7 @@
-import json
+from gendiff.formatter.stylish import stringify
 
 
-def stringify(diff, depth=1):
-    replacer = "  "
-    result = []
-    for key, value in diff.items():
-        if value["type"] == "added":
-            result.append(f"{replacer * depth}- " \
-                          f"{key}: {value['value']}")
-    return "".join(["{\n", *result, "\n}"])
-
-
-
-
-# data = {"key1": {"type": "added",
-#                  "value": "VALUE"}}
-# print(stringify(data))
+def set_formatter(diff, formatter):
+    match formatter:
+        case "stylish":
+            return stringify(diff)
