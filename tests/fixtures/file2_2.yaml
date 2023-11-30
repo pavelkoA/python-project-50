@@ -1,0 +1,21 @@
+---
+group1:
+  name: auto
+  wheels: 4
+  engine: true
+  feature:
+    eats: disel
+    riding:
+      speed: 120
+      ofroad: true
+group2:
+  name: maus
+  paws: 4
+  feature:
+    eats: grey
+    coating: rodent
+group4:
+  name: ''
+  feature:
+    id: ''
+    coating: no information

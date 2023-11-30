@@ -1,0 +1,21 @@
+---
+group1:
+  name: auto
+  wheels: 4
+  engine: true
+  feature:
+    eats: petrol
+    riding:
+      speed: 180
+      ofroad: false
+group2:
+  name: cat
+  paws: 4
+  feature:
+    eats: black
+    coating: woolen
+group3:
+  robot: R2D2
+  feature:
+    id: 45
+    coating: iron
