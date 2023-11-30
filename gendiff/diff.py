@@ -29,9 +29,9 @@ def get_diff_dict(first_file, second_file):
     return result
 
 
-def diff_generate(first_file, second_file, formatter="stylish"):
+def diff_generate(first_file, second_file, format="stylish"):
     file_1_json_to_dict = get_utils_to_readerd(first_file)
     file_2_json_to_dict = get_utils_to_readerd(second_file)
     diff = get_diff_dict(file_1_json_to_dict,
                          file_2_json_to_dict)
-    return set_formatter(diff, formatter)
+    return set_formatter(diff, format)

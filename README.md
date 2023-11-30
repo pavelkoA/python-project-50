@@ -14,6 +14,7 @@
 - [Утилита diff_generate](#утилита-diff_generate)
 - [Сравнение файлов](#сравнение-файлов)
 - [Сравнение файлов с вложенной структурой](#сравнение-рекурсивных-файлов)
+- [Плоское представление отличий](#плоское-представление-отличий)
 
 
 ## Технологии
@@ -47,3 +48,13 @@ gendiff path_file1 path_file2
 
 - Так же есть возможность сравнить файлы с вложенной структурой:
 [![asciicast](https://asciinema.org/a/h42f6CaaEY2ZSwp0MYMh7sBXj.svg)](https://asciinema.org/a/h42f6CaaEY2ZSwp0MYMh7sBXj)
+
+
+## Плоское представление отличий
+
+- Утилита позволяет выбрать текстовое представление отличий в файлах.
+Для этого необходимо указать дополнительный параметр "plain"
+```sh
+gendiff path_file1 path_file2 --format plain
+```
+[![asciicast](https://asciinema.org/a/IYkaZ4hdpWvO81MqjgrzzyEFf.svg)](https://asciinema.org/a/IYkaZ4hdpWvO81MqjgrzzyEFf)

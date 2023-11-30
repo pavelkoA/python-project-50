@@ -18,11 +18,10 @@ def to_string(data, indent):
         return "null"
     elif isinstance(data, bool):
         return str(data).lower()
-    else:
-        return str(data)
+    return str(data)
 
 
-def stringify(diff, depth=0):
+def construct_stylish_diff(diff, depth=0):
     result = []
     indent = "  "
     indent += NEXT_INDENT * depth
@@ -37,7 +36,8 @@ def stringify(diff, depth=0):
                           f"{indent}{deleted_symbol}"
                           f"{key}: {new_value}")
         elif data["type"] == "other":
-            children = stringify(data["children"], depth + 1)
+            children = construct_stylish_diff(data["children"],
+                                              depth + 1)
             unchanged_symbol = SPECIAL_SYMBOL["unchanged"]
             result.append(f'{indent}{unchanged_symbol}'
                           f'{key}: {children}')
