@@ -4,8 +4,10 @@ def _to_string(data):
         return "null"
     elif isinstance(data, bool):
         return str(data).lower()
-    elif isinstance(data, (str, int, float)):
+    elif isinstance(data, (str)):
         return f"'{str(data)}'"
+    elif isinstance(data, (int, float)):
+        return f"{str(data)}"
     return "[complex value]"
 
 
