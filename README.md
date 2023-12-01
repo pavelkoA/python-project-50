@@ -15,6 +15,7 @@
 - [Сравнение файлов](#сравнение-файлов)
 - [Сравнение файлов с вложенной структурой](#сравнение-рекурсивных-файлов)
 - [Плоское представление отличий](#плоское-представление-отличий)
+- [Представление отличий в формате json](#представление-в-формате-json)
 
 
 ## Технологии
@@ -58,3 +59,14 @@ gendiff path_file1 path_file2
 gendiff path_file1 path_file2 --format plain
 ```
 [![asciicast](https://asciinema.org/a/IYkaZ4hdpWvO81MqjgrzzyEFf.svg)](https://asciinema.org/a/IYkaZ4hdpWvO81MqjgrzzyEFf)
+
+
+## Представление отличий в формате json
+
+- Помимо представления в виде схемы добавленных, удаленных строк и плоского прествавления, есть возможность получить различия в json формате.
+Для этого необходимо указать дополнительный параметр "json"
+
+```sh
+gendiff path_file1 path_file2 --format json
+```
+[![asciicast](https://asciinema.org/a/JyZMZikvkBO4Ik2QlAskAdeBy.svg)](https://asciinema.org/a/JyZMZikvkBO4Ik2QlAskAdeBy)
