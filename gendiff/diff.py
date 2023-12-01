@@ -9,10 +9,10 @@ def get_diff_dict(first_file, second_file):
         first_value = first_file.get(key)
         second_value = second_file.get(key)
         if key not in first_file:
-            result[key] = {"type": "deleted",
+            result[key] = {"type": "added",
                            "value": second_value}
         elif key not in second_file:
-            result[key] = {"type": "added",
+            result[key] = {"type": "deleted",
                            "value": first_value}
         elif all([isinstance(first_value, dict),
                   isinstance(second_value, dict)]):

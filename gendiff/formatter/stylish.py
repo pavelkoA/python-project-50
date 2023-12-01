@@ -1,7 +1,7 @@
 NEXT_INDENT = "    "
 SPECIAL_SYMBOL = {
-    "added": "- ",
-    "deleted": "+ ",
+    "added": "+ ",
+    "deleted": "- ",
     "unchanged": "  "
 }
 
@@ -29,8 +29,8 @@ def construct_stylish_diff(diff, depth=0):
         if data["type"] == "changed":
             old_value = to_string(data['old_value'], indent)
             new_value = to_string(data['new_value'], indent)
-            added_symbol = SPECIAL_SYMBOL["added"]
-            deleted_symbol = SPECIAL_SYMBOL["deleted"]
+            added_symbol = SPECIAL_SYMBOL["deleted"]
+            deleted_symbol = SPECIAL_SYMBOL["added"]
             result.append(f"{indent}{added_symbol}"
                           f"{key}: {old_value}\n"
                           f"{indent}{deleted_symbol}"
