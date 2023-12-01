@@ -17,7 +17,7 @@ test_result_formatter_stylish_2 = "{\n" \
 
 
 test_result_formatter_plain_1 = ""
-test_result_formatter_plain_2 = "Property 'timeout' was updated. From '50' to '20'"
+test_result_formatter_plain_2 = "Property 'timeout' was updated. From 50 to 20"
 
 
 test_result_formatter_json_1 = '{\n  "host": {\n    "type": "unchanged",\n    "value": "hexlet.io"\n  }\n}'

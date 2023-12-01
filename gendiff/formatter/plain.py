@@ -5,7 +5,7 @@ def _to_string(data):
     elif isinstance(data, bool):
         return str(data).lower()
     elif isinstance(data, (str, int, float)):
-        return f"'{str(data)}'"
+        return f"{str(data)}" if data != "" else ' '
     return "[complex value]"
 
 
