@@ -26,9 +26,9 @@ def construct_plain_diff(diff):
                     new_value = _to_string(data['new_value'])
                     result.append(f"Property '{current_path}' was updated. "
                                   f"From {old_value} to {new_value}")
-                case "added":
-                    result.append(f"Property '{current_path}' was removed")
                 case "deleted":
+                    result.append(f"Property '{current_path}' was removed")
+                case "added":
                     value = _to_string(data['value'])
                     result.append(f"Property '{current_path}' "
                                   f"was added with value: {value}")
