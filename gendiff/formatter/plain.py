@@ -2,10 +2,10 @@
 def _to_string(data):
     if data is None:
         return "null"
-    elif isinstance(data, (str, int, float)):
-        return f"{str(data)}" if data != "" else "''"
     elif isinstance(data, bool):
         return str(data).lower()
+    elif isinstance(data, (str, int, float)):
+        return f"'{str(data)}'"
     return "[complex value]"
 
 
