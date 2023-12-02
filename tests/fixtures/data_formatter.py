@@ -41,3 +41,12 @@ test_data_set_formatter = [(dict_test1, "stylish",
                             test_result_formatter_json_1),
                            (dict_test2, "json",
                             test_result_formatter_json_2)]
+
+
+test_data_to_string_plain = [("value", "'value'"),
+                             (1, "1"),
+                             (None, "null"),
+                             ({"key": "value"}, "[complex value]"),
+                             (["value1", "value2"], "[complex value]"),
+                             (True, "true"),
+                             (False, "false")]

@@ -1,4 +1,6 @@
-from gendiff.parser import get_json_file_to_dict, get_yaml_file_to_dict
+from gendiff.parser import (get_json_file_to_dict,
+                            get_yaml_file_to_dict,
+                            get_utils_to_readerd)
 import pytest
 from tests.fixtures import data_read_file
 
@@ -13,3 +15,9 @@ def test_json_read(test_data, file_path):
                          data_read_file.test_data_yaml_read)
 def test_yaml_read(test_data, file_path):
     assert get_yaml_file_to_dict(file_path) == test_data
+
+
+@pytest.mark.parametrize("test_data, file_path",
+                         data_read_file.test_data_get_utils_to_reader)
+def test_get_utils_to_reader(test_data, file_path):
+    assert get_utils_to_readerd(file_path) == test_data

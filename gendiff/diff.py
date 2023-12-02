@@ -1,5 +1,6 @@
 from gendiff.parser import get_utils_to_readerd
 from gendiff.formatter.formatter import set_formatter
+from gendiff.cli import parse_command_arguments
 
 
 def get_diff_dict(first_file, second_file):
@@ -35,3 +36,8 @@ def generate_diff(first_file, second_file, format="stylish"):
     diff = get_diff_dict(file_1_json_to_dict,
                          file_2_json_to_dict)
     return set_formatter(diff, format)
+
+
+def run_console_util():
+    first_file, second_file, file_format = parse_command_arguments()
+    print(generate_diff(first_file, second_file, file_format))

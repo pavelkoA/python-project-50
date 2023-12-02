@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
-from gendiff.cli import parse_command_arguments
-from gendiff import generate_diff
+from gendiff.diff import run_console_util
 
 
 def main():
-    first_file, second_file, file_format = parse_command_arguments()
-    print(generate_diff(first_file,
-                        second_file,
-                        file_format))
+    run_console_util()
 
 
 if __name__ == "__main__":
