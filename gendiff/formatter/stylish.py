@@ -6,12 +6,12 @@ SPECIAL_SYMBOL = {
 }
 
 
-def _to_string(data, indent):
+def to_stylish_string(data, indent):
     indent += NEXT_INDENT
     if isinstance(data, dict):
         result = "{\n"
         for key in data.keys():
-            value = _to_string(data[key], indent)
+            value = to_stylish_string(data[key], indent)
             result += f"{indent}  {key}: {value}\n"
         return result + indent[:-2] + "}"
     elif data is None:
@@ -27,8 +27,8 @@ def construct_stylish_diff(diff, depth=0):
     indent += NEXT_INDENT * depth
     for key, data in diff.items():
         if data["type"] == "changed":
-            old_value = _to_string(data['old_value'], indent)
-            new_value = _to_string(data['new_value'], indent)
+            old_value = to_stylish_string(data['old_value'], indent)
+            new_value = to_stylish_string(data['new_value'], indent)
             added_symbol = SPECIAL_SYMBOL["deleted"]
             deleted_symbol = SPECIAL_SYMBOL["added"]
             result.append(f"{indent}{added_symbol}"
@@ -42,7 +42,7 @@ def construct_stylish_diff(diff, depth=0):
             result.append(f'{indent}{unchanged_symbol}'
                           f'{key}: {children}')
         else:
-            value = _to_string(data['value'], indent)
+            value = to_stylish_string(data['value'], indent)
             sign = SPECIAL_SYMBOL[data["type"]]
             result.append(f"{indent}{sign}"
                           f"{key}: {value}")
