@@ -1,7 +1,7 @@
 import pytest
 from tests.fixtures import data_diff
 from gendiff.diff_tree import get_diff_tree
-from gendiff.diff import generate_diff, get_readerd_file
+from gendiff.diff import generate_diff, get_data
 from tests.fixtures import data_read_file
 
 
@@ -20,4 +20,4 @@ def test_diff_generate(path_file1, path_file22, result_string):
 @pytest.mark.parametrize("test_data, file_path",
                          data_read_file.test_data_get_utils_to_reader)
 def test_get_readerd_file(test_data, file_path):
-    assert get_readerd_file(file_path) == test_data
+    assert get_data(file_path) == test_data

@@ -37,7 +37,7 @@ def construct_plain_diff(diff):
                     value = to_plain_string(data['value'])
                     result.append(f"Property '{current_path}' "
                                   f"was added with value: {value}")
-                case "other":
+                case "nested":
                     wrap(data["children"], current_path)
     wrap(diff)
     return "\n".join(result)

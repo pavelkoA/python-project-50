@@ -1,27 +1,27 @@
 
 
-def get_diff_tree(first_file, second_file):
-    keys = first_file.keys() | second_file.keys()
+def get_diff_tree(data1, data2):
+    keys = data1.keys() | data2.keys()
     diff_tree = {}
     for key in sorted(keys):
-        first_value = first_file.get(key)
-        second_value = second_file.get(key)
-        if key not in first_file:
+        value1 = data1.get(key)
+        value2 = data2.get(key)
+        if key not in data1:
             diff_tree[key] = {"type": "added",
-                              "value": second_value}
-        elif key not in second_file:
+                              "value": value2}
+        elif key not in data2:
             diff_tree[key] = {"type": "deleted",
-                              "value": first_value}
-        elif all([isinstance(first_value, dict),
-                  isinstance(second_value, dict)]):
-            diff_tree[key] = {"type": "other",
-                              "children": get_diff_tree(first_value,
-                                                        second_value)}
-        elif first_value == second_value:
-            diff_tree[key] = {"type": "unchanged",
-                              "value": first_value}
-        else:
+                              "value": value1}
+        elif all([isinstance(value1, dict),
+                  isinstance(value2, dict)]):
+            diff_tree[key] = {"type": "nested",
+                              "children": get_diff_tree(value1,
+                                                        value2)}
+        elif value1 != value2:
             diff_tree[key] = {"type": "changed",
-                              "old_value": first_value,
-                              "new_value": second_value}
+                              "old_value": value1,
+                              "new_value": value2}
+        else:
+            diff_tree[key] = {"type": "unchanged",
+                              "value": value1}
     return diff_tree

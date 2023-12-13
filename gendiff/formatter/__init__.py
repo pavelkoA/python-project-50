@@ -3,9 +3,9 @@ from gendiff.formatter.plain import construct_plain_diff
 from gendiff.formatter.json import construct_json_diff
 
 
-def set_formatter(diff, format):
+def formate_diff(diff, format):
     match format:
-        case "stylish" | None:
+        case "stylish":
             return construct_stylish_diff(diff)
         case "plain":
             return construct_plain_diff(diff)

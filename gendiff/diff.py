@@ -1,28 +1,16 @@
-from gendiff import parser
-from gendiff.formatter import set_formatter
-from gendiff.cli import parse_command_arguments
+import os
+from gendiff.parser import get_parsed
+from gendiff.formatter import formate_diff
 from gendiff.diff_tree import get_diff_tree
 
 
-def get_readerd_file(path_file):
-    problem_format = path_file[-4:]
-    match problem_format:
-        case "json":
-            return parser.get_json_file_to_dict(path_file)
-        case ".yml" | "yaml":
-            return parser.get_yaml_file_to_dict(path_file)
-        case _:
-            return "format not supported"
+def get_data(path_file):
+    file_format = os.path.splitext(path_file)[1]
+    return get_parsed(path_file, file_format)
 
 
 def generate_diff(first_file, second_file, format="stylish"):
-    file_1_json_to_dict = get_readerd_file(first_file)
-    file_2_json_to_dict = get_readerd_file(second_file)
-    diff = get_diff_tree(file_1_json_to_dict,
-                         file_2_json_to_dict)
-    return set_formatter(diff, format)
-
-
-def run_console_util():
-    first_file, second_file, file_format = parse_command_arguments()
-    print(generate_diff(first_file, second_file, file_format))
+    data1 = get_data(first_file)
+    data2 = get_data(second_file)
+    diff = get_diff_tree(data1, data2)
+    return formate_diff(diff, format)

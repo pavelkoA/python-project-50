@@ -20,7 +20,7 @@ diff_dict_test3_file2 = {"common": {"follow": "false",
                                     "setting4": "blah blah",
                                     "setting5": {
                                         "key5": "value5"}}}
-result_dict_test3 = {'common': {'type': 'other',
+result_dict_test3 = {'common': {'type': 'nested',
                                 'children': {
                                     'follow': {'type': 'added',
                                                'value': 'false'},

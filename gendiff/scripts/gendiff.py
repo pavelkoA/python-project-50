@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-from gendiff.diff import run_console_util
+from gendiff.diff import generate_diff
+from gendiff.cli import parse_command_arguments
 
 
 def main():
-    run_console_util()
+    print(generate_diff(*parse_command_arguments()))
 
 
 if __name__ == "__main__":
