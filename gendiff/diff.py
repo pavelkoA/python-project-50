@@ -9,8 +9,10 @@ def get_data(path_file):
     return get_parsed(path_file, file_format)
 
 
-def generate_diff(first_file, second_file, format="stylish"):
+def generate_diff(first_file, second_file, format):
     data1 = get_data(first_file)
     data2 = get_data(second_file)
     diff = get_diff_tree(data1, data2)
-    return formate_diff(diff, format)
+    if format:
+        return formate_diff(diff, format)
+    return formate_diff(diff)

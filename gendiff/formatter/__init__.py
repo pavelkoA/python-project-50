@@ -3,7 +3,7 @@ from gendiff.formatter.plain import construct_plain_diff
 from gendiff.formatter.json import construct_json_diff
 
 
-def formate_diff(diff, format):
+def formate_diff(diff, format="stylish"):
     match format:
         case "stylish":
             return construct_stylish_diff(diff)
