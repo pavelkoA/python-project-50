@@ -1,5 +1,3 @@
-
-
 def to_plain_string(data):
     if data is None:
         return "null"

@@ -49,6 +49,8 @@ test_data_yaml_read = [(file_1_dict, "tests/fixtures/file1.yaml"),
 test_data_get_utils_to_reader = [(file_1_dict, "tests/fixtures/file1.json"),
                                  (file_2_dict, "tests/fixtures/file2.json"),
                                  (file_1_dict, "tests/fixtures/file1.yaml"),
-                                 (file_2_dict, "tests/fixtures/file2.yaml"),
-                                 ("format not supported",
-                                  "tests/fixtures/file.doc")]
+                                 (file_2_dict, "tests/fixtures/file2.yaml")]
+
+
+test_data_get_utils_to_reader_raise = [("format not supported",
+                                        "tests/fixtures/file.doc")]

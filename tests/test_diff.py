@@ -21,3 +21,10 @@ def test_diff_generate(path_file1, path_file22, result_string):
                          data_read_file.test_data_get_utils_to_reader)
 def test_get_readerd_file(test_data, file_path):
     assert get_data(file_path) == test_data
+
+
+@pytest.mark.parametrize("test_data, file_path",
+                         data_read_file.test_data_get_utils_to_reader_raise)
+def test_get_readerd_file_raise(test_data, file_path):
+    with pytest.raises(TypeError):
+        assert get_data(file_path) == test_data
