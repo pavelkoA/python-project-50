@@ -15,19 +15,20 @@ def construct_plain_diff(diff):
 
     def iter_by_diff(diff, path=""):
         for key, data in diff.items():
+            current_path = f"{path}.{key}" if path else key
             match data["type"]:
                 case"changed":
                     old_value = to_str(data["old_value"])
                     new_value = to_str(data["new_value"])
-                    result.append(f"Property '{key}' was updated. "
+                    result.append(f"Property '{current_path}' was updated. "
                                   f"From {old_value} to {new_value}")
                 case "deleted":
-                    result.append(f"Property '{key}' was removed")
+                    result.append(f"Property '{current_path}' was removed")
                 case "added":
                     value = to_str(data['value'])
-                    result.append(f"Property '{key}' "
+                    result.append(f"Property '{current_path}' "
                                   f"was added with value: {value}")
                 case "nested":
-                    iter_by_diff(data["children"], f"{path}.{key}")
+                    iter_by_diff(data["children"], current_path)
     iter_by_diff(diff)
     return "\n".join(result)
