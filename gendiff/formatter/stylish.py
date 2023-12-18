@@ -1,4 +1,4 @@
-from gendiff.constant import NEXT_INDENT, SPECIAL_SYMBOL
+from gendiff.constants import NEXT_INDENT, SPECIAL_SYMBOL
 
 
 def to_str(data, indent):
@@ -21,8 +21,7 @@ def construct_stylish_diff(diff, depth=0):
     indent = "  "
     indent += NEXT_INDENT * depth
     for key, data in diff.items():
-        type = data["type"]
-        match type:
+        match data["type"]:
             case "changed":
                 old_value = to_str(data['old_value'], indent)
                 new_value = to_str(data['new_value'], indent)
@@ -39,7 +38,7 @@ def construct_stylish_diff(diff, depth=0):
                               f"{key}: {children}")
             case _:
                 value = to_str(data['value'], indent)
-                sign = SPECIAL_SYMBOL[type]
+                sign = SPECIAL_SYMBOL[data["type"]]
                 result.append(f"{indent}{sign}"
                               f"{key}: {value}")
     return "\n".join(["{", *result, indent[:-2] + "}"])

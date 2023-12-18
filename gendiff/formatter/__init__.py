@@ -11,3 +11,5 @@ def render_diff(diff, format):
             return construct_plain_diff(diff)
         case "json":
             return construct_json_diff(diff)
+        case _:
+            return f"Format '{format}' not supported!"

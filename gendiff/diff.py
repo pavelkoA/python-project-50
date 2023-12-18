@@ -1,6 +1,6 @@
 import os
 from gendiff.parser import parse
-from gendiff.formatter import formate_diff
+from gendiff.formatter import render_diff
 from gendiff.diff_tree import get_diff_tree
 
 
@@ -17,4 +17,4 @@ def generate_diff(first_file, second_file, format="stylish"):
     data1 = get_data(first_file)
     data2 = get_data(second_file)
     diff = get_diff_tree(data1, data2)
-    return formate_diff(diff, format)
+    return render_diff(diff, format)

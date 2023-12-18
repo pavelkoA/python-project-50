@@ -1,4 +1,4 @@
-def to_plain_string(data):
+def to_str(data):
     if data is None:
         return "null"
     elif isinstance(data, bool):
@@ -10,32 +10,24 @@ def to_plain_string(data):
     return "[complex value]"
 
 
-def get_current_path(path, key):
-    if path:
-        return path + f".{key}"
-    return key
-
-
 def construct_plain_diff(diff):
     result = []
 
-    def wrap(diff, path=None):
+    def iter_by_diff(diff, path=None):
         for key, data in diff.items():
-            current_path = get_current_path(path, key)
-
             match data["type"]:
                 case"changed":
-                    old_value = to_plain_string(data['old_value'])
-                    new_value = to_plain_string(data['new_value'])
-                    result.append(f"Property '{current_path}' was updated. "
+                    old_value = to_str(data["old_value"])
+                    new_value = to_str(data["new_value"])
+                    result.append(f"Property '{key}' was updated. "
                                   f"From {old_value} to {new_value}")
                 case "deleted":
-                    result.append(f"Property '{current_path}' was removed")
+                    result.append(f"Property '{key}' was removed")
                 case "added":
-                    value = to_plain_string(data['value'])
-                    result.append(f"Property '{current_path}' "
+                    value = to_str(data['value'])
+                    result.append(f"Property '{key}' "
                                   f"was added with value: {value}")
                 case "nested":
-                    wrap(data["children"], current_path)
-    wrap(diff)
+                    iter_by_diff(data["children"], f"{path}.{key}")
+    iter_by_diff(diff)
     return "\n".join(result)
