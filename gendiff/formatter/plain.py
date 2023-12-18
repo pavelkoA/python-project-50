@@ -13,7 +13,7 @@ def to_str(data):
 def construct_plain_diff(diff):
     result = []
 
-    def iter_by_diff(diff, path=None):
+    def iter_by_diff(diff, path=""):
         for key, data in diff.items():
             match data["type"]:
                 case"changed":
