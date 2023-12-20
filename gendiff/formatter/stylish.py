@@ -18,8 +18,9 @@ def to_str(data, indent):
 
 def construct_stylish_diff(diff):
 
-    def iter_by_diff(diff, indent="  ", depth=0):
+    def iter_by_diff(diff, indent="  "):
         result = []
+        depth = 0
         for key, data in diff.items():
             match data["type"]:
                 case "changed":

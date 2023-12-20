@@ -11,9 +11,9 @@ def to_str(data):
 
 
 def construct_plain_diff(diff):
+    result = []
 
     def iter_by_diff(diff, path=""):
-        result = []
         for key, data in diff.items():
             current_path = f"{path}.{key}" if path else key
             match data["type"]:
@@ -30,5 +30,5 @@ def construct_plain_diff(diff):
                                   f"was added with value: {value}")
                 case "nested":
                     iter_by_diff(data["children"], current_path)
-        return "\n".join(result)
-    return iter_by_diff(diff)
+    iter_by_diff(diff)
+    return "\n".join(result)
