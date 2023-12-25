@@ -4,20 +4,20 @@ def to_str(data):
     elif isinstance(data, bool):
         return str(data).lower()
     elif isinstance(data, (str)):
-        return f"'{str(data)}'"
+        return f"'{data}'"
     elif isinstance(data, (int, float)):
-        return f"{str(data)}"
+        return f"{data}"
     return "[complex value]"
 
 
-def construct_plain_diff(diff):
+def render_plain_diff(diff):
     result = []
 
     def iter_by_diff(diff, path=""):
         for key, data in diff.items():
             current_path = f"{path}.{key}" if path else key
             match data["type"]:
-                case"changed":
+                case "changed":
                     old_value = to_str(data["old_value"])
                     new_value = to_str(data["new_value"])
                     result.append(f"Property '{current_path}' was updated. "
@@ -30,5 +30,9 @@ def construct_plain_diff(diff):
                                   f"was added with value: {value}")
                 case "nested":
                     iter_by_diff(data["children"], current_path)
+                case "unchanged":
+                    continue
+                case _:
+                    raise ValueError(f"Data type {data['type']} unknown")
     iter_by_diff(diff)
     return "\n".join(result)
