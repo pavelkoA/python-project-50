@@ -41,6 +41,4 @@ venv.bak/
 
 test.py
 .coverage
-tests/test_diff.py
-tests/test_formatter.py
 coverage.xml
