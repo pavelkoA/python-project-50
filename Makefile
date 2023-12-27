@@ -14,8 +14,7 @@ package-reinstall:
 	python3 -m pip install --user --force-reinstall dist/*whl
 
 lint:
-	poetry run flake8 gendiff
-	poetry run flake8 tests
+	poetry run flake8 gendiff tests
 
 test:
 	poetry run pytest
@@ -23,7 +22,4 @@ test:
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml
 
-all-check:
-	poetry run pytest
-	poetry run flake8 gendiff
-	poetry run flake8 tests
+all-check: test lint
